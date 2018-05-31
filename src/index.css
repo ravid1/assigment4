@@ -1,0 +1,70 @@
+ul{
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.App{
+  display: flex;
+  flex-direction: row;
+  border-radius: 15px;
+  height: 100vh;
+}
+
+.leftPanel{
+  flex: 1;
+  background-color: antiquewhite;
+  padding-left: 0px;
+}
+
+.rightPanel{
+flex: 3;
+display: flex;
+background-color: yellow;
+flex-direction: column;
+/* height: 100vh;*/
+}
+
+.massagesPanel{
+  flex: 4;
+  background-color: aqua;
+}
+
+.inputPanel{
+  flex: 1;
+  background-color: blueviolet;
+}
+
+.myMessageText{
+  width: 72.3%;
+}
+
+.myMessage{
+  float: bottom;
+}
+
+.tree{
+  width: 100%;
+  padding: 0.5em;
+  margin: 0;
+  list-style: none;
+  outline: none;
+  text-indent: 0px;
+  text-align: -webkit-left;
+  user-select: none;
+  /*border-right: 1px solid black;*/
+}
+
+.active {
+  background-color: aqua;
+  border-left: none;
+}
+
+.noColor{
+  background-color: white;
+}
+
+/*body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}*/
