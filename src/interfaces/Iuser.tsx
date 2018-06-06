@@ -1,6 +1,5 @@
-
-export default interface Iuser {
+/*export default interface Iuser {
     name: string
-    age: number
-    password: string
-}
+    age?: number
+    password?: string
+}*/

@@ -1,8 +1,8 @@
-import Iuser from './Iuser';
+// import Iuser from './Iuser';
 
 export default interface Imessage{
-    time: Date
+    time: string
     message: string
-    sender: Iuser
+    sender: string
 }
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import  {stateStoreService} from '../stateStore/StateStore';
+import Imessage from '../interfaces/Imessage';
 
 interface ImassagesPanelState {
     messages: object[]
@@ -15,11 +16,11 @@ class MassagesPanel extends React.Component<{},ImassagesPanelState> {
         }
     }
 
-    public componentWillMount(){
+  /*  public componentWillMount(){
         this.setState({
             messages: stateStoreService.get('messages')
         })
-    }
+    }*/
 
     public render() {
         return (
@@ -35,7 +36,7 @@ class MassagesPanel extends React.Component<{},ImassagesPanelState> {
         console.log("1");
         let list;
         if(messagesArr) {
-            list = messagesArr.map((messages: { sender: string, message: string }, idx: number) => {
+            list = messagesArr.map((messages: Imessage, idx: number) => {
                 return <li key={idx}>{messages.message}</li>
             })
         }

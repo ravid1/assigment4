@@ -19,23 +19,27 @@ ul{
 .rightPanel{
 flex: 3;
 display: flex;
-background-color: yellow;
+/*background-color: yellow;*/
 flex-direction: column;
-/* height: 100vh;*/
+background-image: url('./images/background-chat.jpg');
+  /* height: 100vh;*/
 }
 
 .massagesPanel{
   flex: 4;
-  background-color: aqua;
+/*  background-color: aqua;*/
+  overflow: auto;
 }
 
 .inputPanel{
   flex: 1;
-  background-color: blueviolet;
+  border-style: solid;
+  border-width: 10px;
+  /*background-color: blueviolet;*/
 }
 
 .myMessageText{
-  width: 72.3%;
+  width: 99.1%;
 }
 
 .myMessage{
@@ -60,7 +64,7 @@ flex-direction: column;
 }
 
 .noColor{
-  background-color: white;
+  background-color: antiquewhite;
 }
 
 /*body {

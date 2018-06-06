@@ -3,74 +3,37 @@ import * as React from 'react';
 import { stateStoreService} from '../stateStore/StateStore'
 
 
-interface IleftPanel {
-    item?: string[]
+interface IleftPanelProps {
+    user: string
 }
 
-class LeftPanel extends React.Component<IleftPanel,{}> {
+
+interface IleftPanelState {
+    tree?:any,
+    user: string
+}
+
+
+class LeftPanel extends React.Component<IleftPanelProps,IleftPanelState> {
     private ref: any;
-    constructor(props: IleftPanel){
+    constructor(props: IleftPanelProps){
         super(props);
-       // this.ref = null;
+
         this.state={
-            item: [],
+            user: this.props.user
             // ref: null
         }
     }
 
     public componentDidMount(){
-        const element = `[
-        {
-            "type": "group",
-            "name": "Friends",
-            "messages": [{"Time": "10:00", "message": "bulbul2", "sender": "orel"},{"Time": "10:00", "message": "bulbul2", "sender": "orel"},{"Time": "10:00", "message": "bulbul3", "sender": "orel"}],
-            "items": [
-                {
-                    "type": "group",
-                    "name": "Best Friends",
-                    "messages": [],
-                    "items": [
-                        {
-                            "type": "user",
-                            "name": "Tommy",
-                            "messages": []
-                        }
-                    ]
-                },
-                {
-                    "type": "user",
-                    "name": "Udi",
-                    "messages": []
-                }
-            ]
-        },
-            {
-                "type": "user",
-                "name": "Ori",
-                "messages": []
-            },
-            {
-                "type": "user",
-                "name": "Roni",
-                "messages": []
-            }
-        ]    `;
-        this.load(JSON.parse(element));
+        const element = stateStoreService.get('tree');
+        this.load(element);
         this.keysEvent();
-    }
 
-
-    public render() {
-        return (
-            <div className="leftPanel" >
-                <p>this is LeftPanel!!!!!!!!!</p>
-                <ul className="tree" tabIndex={0} ref={((input)=>this.ref=input)} />
-            </div>
-        );
     }
 
     public load(items: any) {
-        const list = $(this.ref); // $('.left');
+       // $('.left');
         let flag = true;
         // if(!(list.children().length)) {
             for (const item of items) {
@@ -85,18 +48,18 @@ class LeftPanel extends React.Component<IleftPanel,{}> {
                 if (item.type === "group") {
                     listItem.data(item.items);
                 }
-                list.append(listItem);
+                $(this.ref).append(listItem);
             }
       //  }
 
-        list.click((e: any)=>{
+        $(this.ref).click((e: any)=>{
             if($(e.target)[0].tagName==="LI") {
                 this.changeColor($(e.target));
             }
             e.stopPropagation();
         });
 
-        $(list).dblclick((e: any)=>{
+        $(this.ref).dblclick((e: any)=>{
             if($(e.target)[0].tagName==="LI") {
                 this.changeColor($(e.target));
                 this.expandNodes($(e.target));
@@ -235,6 +198,15 @@ class LeftPanel extends React.Component<IleftPanel,{}> {
     private setStateStore(element: any){
          const msg = $(element).data();
          stateStoreService.set('messages',msg["messages"]);
+         stateStoreService.set('destination',$(element).text());
+    }
+
+    public render() {
+        return (
+            <div className="leftPanel" >
+                <ul className="tree" tabIndex={0} ref={((element)=>this.ref=element)} />
+            </div>
+        );
     }
 }
 
